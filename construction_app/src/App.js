@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Navbar from "./Components/Navbar";
+import Services from "./Pages/Services";
+import Home from "./Pages/Home";
+import About from "./Pages/About";
 
 function App() {
+  let Component;
+  let location = window.location.pathname;
+  console.log(location);
+  if (location == "/") {
+    Component = App;
+    console.log("1");
+  } else if (location == "/Home") {
+    Component = Home;
+    console.log("2");
+  } else if ((location = "/Services")) {
+    Component = Services;
+    console.log("3");
+  } else if ((location = "/About")) {
+    Component = About;
+    console.log("4");
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar>
+        <Component></Component>
+      </Navbar>
+    </>
   );
 }
 
