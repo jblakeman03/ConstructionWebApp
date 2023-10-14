@@ -1,0 +1,5 @@
+.background {
+  background-image: url("../Images/Background_image.JPG");
+  background-size: cover;
+  padding: 1rem;
+}
