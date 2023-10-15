@@ -3,7 +3,7 @@ import "./Button.css";
 
 function ScheduleButton() {
   return (
-    <button type="button" className="ScheduleButton">
+    <button type="button" className="HomeButtons">
       <Link to="/Schedule" className="link">
         Schedule Quote
       </Link>

@@ -7,15 +7,13 @@ function Home() {
   return (
     <>
       <body>
-        <div className="banner">
-          <Navbar></Navbar>
-          <div className="content">
-            <h1> Got a project you need done?</h1>
-            <p>Schedule an estimate or book a project you already had quoted</p>
-            <div>
-              <ScheduleButton></ScheduleButton>
-              <BookButton></BookButton>
-            </div>
+        <Navbar></Navbar>
+        <div className="content">
+          <h1> Got a project you need done?</h1>
+          <p>Schedule an estimate or book a project you already had quoted</p>
+          <div>
+            <ScheduleButton> </ScheduleButton>
+            <BookButton> </BookButton>
           </div>
         </div>
       </body>

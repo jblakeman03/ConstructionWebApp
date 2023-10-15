@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function BookButton() {
   return (
-    <button type="button" className="BookButton">
+    <button type="button" className="HomeButtons">
       <Link to="/Book">Book Project </Link>
     </button>
   );
