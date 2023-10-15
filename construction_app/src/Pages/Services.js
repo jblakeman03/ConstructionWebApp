@@ -1,5 +1,14 @@
+import Navbar from "../Components/Navbar";
+
 function Services() {
-  return <h1> Services</h1>;
+  return (
+    <>
+      <div>
+        <Navbar></Navbar>
+        <h1> Services</h1>
+      </div>
+    </>
+  );
 }
 
 export default Services;

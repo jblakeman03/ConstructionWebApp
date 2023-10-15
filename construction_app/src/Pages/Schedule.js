@@ -1,14 +1,14 @@
 import Navbar from "../Components/Navbar";
 
-function Contact() {
+function Schedule() {
   return (
     <>
       <div>
         <Navbar></Navbar>
-        <h1> Contact</h1>
+        <h1> Schedule</h1>
       </div>
     </>
   );
 }
 
-export default Contact;
+export default Schedule;
