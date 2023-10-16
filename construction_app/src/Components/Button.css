@@ -1,8 +1,32 @@
-.ScheduleButton {
-  text-decoration: none;
+:root {
+  --primary: white;
+  --secondary: black;
 }
 
-.Link {
-  list-style: none;
-  font-size: 100px;
+.btn {
+  padding: 8px 20px;
+}
+
+.btn--primary {
+  background-color: var(--primary);
+  color: black;
+}
+
+.btn--outline {
+  background-color: var(--seconday);
+}
+
+.btn--medium {
+  padding: 8px 20px;
+  font-size: 20px;
+}
+
+.btn--large {
+  padding: 12px 26px;
+  font-size: 20px;
+}
+
+.btn--medium:hover,
+.btn--large:hover {
+  background-color: red;
 }

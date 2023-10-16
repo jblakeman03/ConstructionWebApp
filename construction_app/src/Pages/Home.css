@@ -1,5 +1,5 @@
-.banner {
-  background: url("../Images/Background_image.JPG");
+html {
+  background-image: url("../Images/Background_image.JPG");
 }
 
 .content {
@@ -9,11 +9,4 @@
   transform: translateY(150%);
   padding: 0;
   margin: 0;
-}
-
-.button {
-  padding: 15 px;
-  width: 200px;
-  gap: 15px;
-  list-style: none;
 }

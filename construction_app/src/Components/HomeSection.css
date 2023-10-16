@@ -1,0 +1,32 @@
+video {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: -1;
+}
+
+.HomeSection-container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  object-fit: contain;
+}
+
+.HomeSection-btns > {
+  justify-content: space-between;
+}
+
+.HomeSection-container > h1 {
+  color: white;
+  margin-top: 200px;
+  font-size: 50px;
+}
+
+.HomeSection-container > p {
+  color: white;
+  margin-top: -25px;
+  font-size: 20;
+}
