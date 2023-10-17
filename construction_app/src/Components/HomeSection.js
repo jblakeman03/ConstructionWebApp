@@ -5,7 +5,7 @@ import { Button } from "./Button";
 function HomeSection() {
   return (
     <div className="HomeSection-container">
-      <video src="/Videos/Background-video.mp4" autoPlay loop muted></video>
+      <video src="/Videos/Background-video2.mp4" autoPlay loop muted></video>
       <h1>Get your Project Started</h1>
       <p> Schedule an estimate or book a project</p>
       <div classame="HomeSection-btns">
@@ -13,6 +13,7 @@ function HomeSection() {
           className="btns"
           buttonStyle="btn--primary"
           buttonSize="btn--medium"
+          to="/SignUp"
         >
           Sign Up
         </Button>
@@ -21,6 +22,7 @@ function HomeSection() {
           className="btns"
           buttonStyle="btn--primary"
           buttonSize="btn--medium"
+          to="/Schedule"
         >
           Schedule Quote
         </Button>
@@ -29,8 +31,9 @@ function HomeSection() {
           className="btns"
           buttonStyle="btn--primary"
           buttonSize="btn--medium"
+          to="/Book"
         >
-          Schedule Project
+          Book Project
         </Button>
       </div>
     </div>
