@@ -6,7 +6,7 @@ function About() {
         <p>
           {" "}
           Blakeman Brother's Construction originated in 2019 when the world shut
-          down due to coivid... Finish This later
+          down due to coivid... Finish This later. May delete if run out of time
         </p>
       </div>
     </>

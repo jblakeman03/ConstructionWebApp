@@ -7,6 +7,8 @@ import Services from "./Pages/Services";
 import Contact from "./Pages/Contact";
 import Login from "./Pages/Login";
 import SignUp from "./Pages/SignUp";
+import Schedule from "./Pages/Schedule";
+import Book from "./Pages/Book";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
           <Route path="/Contact" element={<Contact />}></Route>
           <Route path="/Login" element={<Login />}></Route>
           <Route path="/SignUp" element={<SignUp />}></Route>
+          <Route path="/Schedule" element={<Schedule />}></Route>
+          <Route path="/Book" element={<Book />}></Route>
         </Routes>
       </BrowserRouter>
     </>
