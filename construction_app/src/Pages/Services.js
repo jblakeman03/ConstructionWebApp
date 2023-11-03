@@ -1,11 +1,10 @@
-import "./Services.css";
 function Services() {
   return (
     <>
-      <div className="mainContainer">
+      <div className="servicesContainer">
         <h1> What do we do </h1>
-        <div className="row">
-          <div className="column">
+        <div className="servicesRow">
+          <div className="servicesColumn">
             <img src="/Images/deck1.JPG" width="400" height="350"></img>
             <h2> Multi-story Decks</h2>
             <p>
@@ -15,7 +14,7 @@ function Services() {
               needs.
             </p>
           </div>
-          <div className="column">
+          <div className="servicesColumn">
             <img src="/Images/shed.JPG" width="400" height="350"></img>
             <h2>Barns and Sheds</h2>
             <p>
@@ -24,7 +23,7 @@ function Services() {
               side? We can take care of that too!
             </p>
           </div>
-          <div className="column">
+          <div className="servicesColumn">
             <img src="/Images/whiteFence.JPG" width="400" height="350"></img>
             <h2> Custom Fences</h2>
             <p>

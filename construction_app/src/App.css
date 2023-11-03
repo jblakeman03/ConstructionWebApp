@@ -1,0 +1,233 @@
+/* Components CSS */
+
+/* Buttons CSS */
+:root {
+  --primary: white;
+  --secondary: black;
+}
+
+.btn {
+  padding: 8px 20px;
+}
+
+.btn--primary {
+  background-color: var(--primary);
+  color: black;
+}
+
+.btn--outline {
+  background-color: var(--seconday);
+}
+
+.btn--medium {
+  padding: 8px 20px;
+  font-size: 20px;
+}
+
+.btn--large {
+  padding: 12px 26px;
+  font-size: 20px;
+}
+
+.btn--medium:hover,
+.btn--large:hover {
+  background-color: red;
+}
+
+/* Home Section CSS */
+.homeBody {
+  background-image: url(../public/Images/backgroundHouse.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100%;
+  background-color: green;
+}
+
+.HomeSection-container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  object-fit: contain;
+}
+
+.homeButtons {
+  background-color: #393e41;
+  color: white;
+  font-size: 22px;
+  border-radius: 6px;
+  padding: 5px;
+  margin: 10px;
+}
+
+.HomeSection-container > h1 {
+  color: white;
+  margin-top: 200px;
+  font-size: 50px;
+}
+
+.HomeSection-container > p {
+  color: white;
+  margin-top: -25px;
+  font-size: 35;
+}
+
+/* Navbar CSS */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}
+
+.site-title {
+  font-size: 2rem;
+}
+
+.nav {
+  background-color: rgb(34, 37, 37);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 2rem;
+  padding: 0 1rem;
+}
+
+.nav ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.nav a {
+  color: inherit;
+  text-decoration: none;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.nav li:hover {
+  background-color: #777;
+}
+
+/* Pages CSS */
+
+/* Book Page CSS */
+.bookContainer {
+  text-align: center;
+}
+
+.bookContent {
+  width: 50%;
+  text-align: center;
+  background-color: pink;
+  margin: auto;
+}
+
+/* Contact Page CSS */
+.contactContainer {
+  background-color: white;
+}
+
+/* Schedule Page CSS */
+.scheduleBody {
+}
+.scheduleContainer {
+  text-align: center;
+}
+
+.scheduleContent {
+  width: 50%;
+  text-align: center;
+  margin: auto;
+}
+
+/* Services Page CSS */
+* {
+  box-sizing: border-box;
+}
+.servicesContainer {
+  text-align: center;
+  background-color: blue;
+}
+.servicesColumn {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+  text-align: center;
+  height: 100%;
+}
+
+.servicesRow:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Sign Up CSS */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="phone"] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+.body {
+  background-color: green;
+}
+
+.form {
+  background-color: #0f4456;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="phone"]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+.signup_container {
+  background-color: #95b3b9;
+  margin: auto;
+  display: table;
+  padding: 15px;
+  position: relative;
+  top: 25%;
+  width: 40%;
+  height: 50;
+}
+.line {
+  display: table-cell;
+  width: 100%;
+}
+
+.signupButtons {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.signupButtons > button {
+  background-color: rgb(34, 37, 37);
+  color: white;
+  font-size: 16px;
+  border-radius: 4px;
+  padding: 5px;
+  margin: 10px;
+}

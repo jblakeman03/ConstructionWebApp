@@ -1,42 +1,27 @@
 import React from "react";
-import "./HomeSection.css";
-import { Button } from "./Button";
+import { Link } from "react-router-dom";
 
 function HomeSection() {
   return (
-    <div className="HomeSection-container">
-      <video src="/Videos/Background-video2.mp4" autoPlay loop muted></video>
-      <h1>Get your Project Started</h1>
-      <p> Schedule an estimate or book a project</p>
-      <div classame="HomeSection-btns">
-        <Button
-          className="btns"
-          buttonStyle="btn--primary"
-          buttonSize="btn--medium"
-          to="/SignUp"
-        >
-          Sign Up
-        </Button>
-        {"   "}
-        <Button
-          className="btns"
-          buttonStyle="btn--primary"
-          buttonSize="btn--medium"
-          to="/Schedule"
-        >
-          Schedule Quote
-        </Button>
-        {"   "}
-        <Button
-          className="btns"
-          buttonStyle="btn--primary"
-          buttonSize="btn--medium"
-          to="/Book"
-        >
-          Book Project
-        </Button>
-      </div>
-    </div>
+    <>
+      <body className="homeBody">
+        <div className="HomeSection-container">
+          <h1>Get your Project Started</h1>
+          <p> Schedule an estimate or book a project</p>
+          <div className="HomeSection-btns">
+            <Link to="/SignUp">
+              <button className="homeButtons">Sign Up</button>
+            </Link>
+            <Link to="/Schedule">
+              <button className="homeButtons">Schedule Quote</button>
+            </Link>
+            <Link to="/Book">
+              <button className="homeButtons">Book Project</button>
+            </Link>
+          </div>
+        </div>
+      </body>
+    </>
   );
 }
 

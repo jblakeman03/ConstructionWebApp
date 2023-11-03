@@ -1,15 +1,14 @@
-import "./Book.css";
-
 function Book() {
   return (
     <>
-      <div className="mainContainer">
+      <div className="bookContainer">
         <h1> Book</h1>
-        <div className="contentContainer">
+        <div className="BookContent">
           <label for="quote">Quote ID Number </label>
           <input className="quote" placeholder="Quote ID Number"></input>
           <div className="buttonContainer">
             <button>Book</button>
+          
           </div>
         </div>
       </div>

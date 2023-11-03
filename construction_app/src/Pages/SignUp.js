@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./SignUp.css";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -22,7 +21,7 @@ const SignUp = () => {
     <>
       <body>
         <form onSubmit={handleSubmit} className="form">
-          <div className="container">
+          <div className="signup_container">
             <label for="first">First Name</label>
             <input
               value={first}
@@ -32,6 +31,7 @@ const SignUp = () => {
               className="first"
             ></input>
             <label for="last">Last Name</label>
+
             <input
               value={last}
               onChange={(e) => setLast(e.target.value)}
@@ -47,20 +47,6 @@ const SignUp = () => {
               placeholder="Email"
               className="email"
             ></input>
-            <label for="pass">Password</label>
-            <input
-              value={pass}
-              onChange={(e) => setPass(e.target.value)}
-              type="password"
-              placeholder="Password"
-              className="pass"
-            ></input>
-            <label for="verifyPass">Verify Password</label>
-            <input
-              type="password"
-              placeholder="Password"
-              className="verifyPass"
-            ></input>
             <label for="phone">Phone</label>
             <input
               value={phone}
@@ -69,6 +55,22 @@ const SignUp = () => {
               placeholder="Phone"
               className="phone"
             ></input>
+            <label for="pass">Password</label>
+            <input
+              value={pass}
+              onChange={(e) => setPass(e.target.value)}
+              type="password"
+              placeholder="Password"
+              className="pass"
+            ></input>
+
+            <label for="verifyPass">Verify Password</label>
+            <input
+              type="password"
+              placeholder="Password"
+              className="verifyPass"
+            ></input>
+
             <label for="street1">Street 1</label>
             <input
               value={street1}
@@ -85,6 +87,7 @@ const SignUp = () => {
               placeholder="Street 2"
               className="street2"
             ></input>
+
             <label for="city">City</label>
             <input
               value={city}
@@ -101,7 +104,7 @@ const SignUp = () => {
               placeholder="state"
               className="State"
             ></input>
-            <label for="zip">Zipcde</label>
+            <label for="zip">Zipcode</label>
             <input
               value={zip}
               onChange={(e) => setZip(e.target.value)}
@@ -109,9 +112,9 @@ const SignUp = () => {
               placeholder="Zipcode"
               className="zip"
             ></input>
-            <div className="buttonContainer">
-              <button>Clear</button>
-              <button>Submit </button>
+            <div className="signupButtons">
+              <button className="">Clear</button>
+              <button className="">Submit </button>
             </div>
           </div>
         </form>

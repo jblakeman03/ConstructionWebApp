@@ -1,4 +1,4 @@
-input[type="text"],
+/* input[type="text"],
 input[type="password"],
 input[type="email"],
 input[type="phone"] {
@@ -40,4 +40,4 @@ input[type="phone"]:focus {
   display: inline;
   width: 100%;
   background-color: red;
-}
+} */

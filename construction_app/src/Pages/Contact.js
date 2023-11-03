@@ -1,9 +1,7 @@
-import "./Contact.css";
-
 function Contact() {
   return (
     <>
-      <div className="mainContainer">
+      <div className="contactContainer">
         <h1> What do we do </h1>
         <div className="row">
           <div className="column">
