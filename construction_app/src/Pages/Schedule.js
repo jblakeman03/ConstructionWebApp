@@ -3,7 +3,7 @@ function Schedule() {
     <>
       <body className="scheduleBody">
         <div className="scheduleContainer">
-          <h1> Schedule</h1>
+          <h1> Schedule Estimate </h1>
           <div className="scheduleContent">
             <div className="scheduleElement">
               <label for="first">First Name</label>
@@ -26,6 +26,10 @@ function Schedule() {
                 <option value="remodel"> Remodel</option>
                 <option value="roof"> Roof</option>
               </select>
+            </div>
+            <div className="scheduleElement">
+              <label for="scheduleDate">Date</label>
+              <input type="date" className="scheduleDate"></input>
             </div>
             <div className="scheduleDescription">
               <input type="text" placeholder="Project Description"></input>

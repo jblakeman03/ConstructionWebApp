@@ -1,68 +1,66 @@
 import React, { useState } from "react";
+import Validation from "./SignUpValidation";
 
-const SignUp = () => {
-  const [email, setEmail] = useState("");
-  const [pass, setPass] = useState("");
-  const [first, setFirst] = useState("");
-  const [last, setLast] = useState("");
-  const [phone, setPhone] = useState("");
-  const [street1, setStreet1] = useState("");
-  const [street2, setStreet2] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [zip, setZip] = useState("");
+function SignUp() {
+  const [values, setValues] = useState({
+    first: "",
+    last: "",
+    email: "",
+    pass: "",
+    verifyPass: "",
+    street1: "",
+    street2: "",
+    city: "",
+    state: "",
+    zip: "",
+  });
 
-  const handleSubmit = (e) => {
-    e.preventDefautlt();
-    console.log(email);
+  const [errors, setErrors] = useState({});
+
+  const handleInput = (event) => {
+    setValues((prev) => ({
+      ...prev,
+      [event.target.name]: [event.target.value],
+    }));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setErrors(Validation(values));
+  };
+
+  const handleClear = (event) => {
+    event.preventDefault();
+    setErrors({});
   };
 
   return (
     <>
       <body>
-        <form onSubmit={handleSubmit} className="form">
+        <form onSubmit={handleSubmit} className="form" action="">
           <div className="signup_container">
             <label for="first">First Name</label>
             <input
-              value={first}
-              onChange={(e) => setFirst(e.target.value)}
               type="text"
               placeholder="First Name"
               className="first"
             ></input>
+            {errors.first && <span>{errors.first}</span>}
             <label for="last">Last Name</label>
 
-            <input
-              value={last}
-              onChange={(e) => setLast(e.target.value)}
-              type="text"
-              placeholder="Last Name"
-              className="last"
-            ></input>
+            <input type="text" placeholder="Last Name" className="last"></input>
+            {errors.last && <span>{errors.last}</span>}
             <label for="email">Email</label>
-            <input
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              type="email"
-              placeholder="Email"
-              className="email"
-            ></input>
-            <label for="phone">Phone</label>
-            <input
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              type="phone"
-              placeholder="Phone"
-              className="phone"
-            ></input>
+            <input type="email" placeholder="Email" className="email"></input>
+            {errors.email && <span>{errors.email}</span>}
+
             <label for="pass">Password</label>
             <input
-              value={pass}
-              onChange={(e) => setPass(e.target.value)}
               type="password"
               placeholder="Password"
               className="pass"
             ></input>
+            {errors.pass && <span>{errors.pass}</span>}
 
             <label for="verifyPass">Verify Password</label>
             <input
@@ -70,57 +68,42 @@ const SignUp = () => {
               placeholder="Password"
               className="verifyPass"
             ></input>
+            {errors.verifyPass && <span>{errors.verifyPass}</span>}
 
             <label for="street1">Street 1</label>
             <input
-              value={street1}
-              onChange={(e) => setStreet1(e.target.value)}
               type="text"
               placeholder="Street Address 1"
               className="street1"
             ></input>
+            {errors.street1 && <span>{errors.street1}</span>}
             <label for="street2">Street 2</label>
             <input
-              value={street2}
-              onChange={(e) => setStreet2(e.target.value)}
               type="text"
               placeholder="Street 2"
               className="street2"
             ></input>
 
             <label for="city">City</label>
-            <input
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
-              type="text"
-              placeholder="City"
-              className="city"
-            ></input>
+            <input type="text" placeholder="City" className="city"></input>
+            {errors.city && <span>{errors.city}</span>}
             <label for="state">State</label>
-            <input
-              value={state}
-              onChange={(e) => setState(e.target.value)}
-              type="text"
-              placeholder="state"
-              className="State"
-            ></input>
+            <input type="text" placeholder="state" className="state"></input>
+            {errors.state && <span>{errors.state}</span>}
             <label for="zip">Zipcode</label>
-            <input
-              value={zip}
-              onChange={(e) => setZip(e.target.value)}
-              type="text"
-              placeholder="Zipcode"
-              className="zip"
-            ></input>
+            <input type="text" placeholder="Zipcode" className="zip"></input>
+            {errors.zip && <span>{errors.zip}</span>}
             <div className="signupButtons">
-              <button className="">Clear</button>
-              <button className="">Submit </button>
+              <button type="reset" onClick={handleClear}>
+                Clear
+              </button>
+              <button type="submit">Submit </button>
             </div>
           </div>
         </form>
       </body>
     </>
   );
-};
+}
 
 export default SignUp;
