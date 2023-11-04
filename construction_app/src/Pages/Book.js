@@ -1,17 +1,17 @@
 function Book() {
   return (
     <>
-      <div className="bookContainer">
-        <h1> Book</h1>
-        <div className="BookContent">
-          <label for="quote">Quote ID Number </label>
-          <input className="quote" placeholder="Quote ID Number"></input>
-          <div className="buttonContainer">
+      <body className="bookBody">
+        <div className="bookContainer">
+          <h1> Schedule your Start date </h1>
+          <div className="bookElement">
+            <input className="quote" placeholder="Quote ID Number"></input>
+          </div>
+          <div className="bookButtonContainer">
             <button>Book</button>
-          
           </div>
         </div>
-      </div>
+      </body>
     </>
   );
 }

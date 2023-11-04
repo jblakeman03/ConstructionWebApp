@@ -40,7 +40,6 @@
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 100%;
-  background-color: green;
 }
 
 .HomeSection-container {
@@ -123,42 +122,161 @@ body {
 /* Pages CSS */
 
 /* Book Page CSS */
-.bookContainer {
-  text-align: center;
+.bookBody {
+  height: 100vh;
+  background-color: #0f4456;
+  display: flex;
+  margin: 0;
+  background-size: cover;
 }
 
-.bookContent {
-  width: 50%;
+.bookContainer {
   text-align: center;
-  background-color: pink;
+  background-color: #95b3b9;
+  height: 40%;
+  width: 40%;
+  transform: translateX(70%);
+  margin-top: 150px;
+  border-radius: 10px;
+}
+
+.bookElement {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+.bookElement input {
+  width: 50%;
+  height: 50%;
+  border-radius: 5px;
+  border: none;
   margin: auto;
+}
+.bookButtonContainer {
+  width: 100%;
+}
+
+.bookButtonContainer button {
+  font-size: 18px;
+  border-radius: 4px;
+  padding: 3px;
 }
 
 /* Contact Page CSS */
+.contactBody {
+  height: 100vh;
+  background-color: #0f4456;
+  display: flex;
+  margin: 0;
+  background-size: cover;
+}
 .contactContainer {
-  background-color: white;
+  text-align: center;
+  width: 100%;
+}
+.contactColumn {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+  text-align: center;
+  height: 100%;
+}
+
+.contactRow:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 /* Schedule Page CSS */
 .scheduleBody {
+  background-color: #0f4456;
+  margin: 0;
+  height: 100vh;
+  padding: 0;
+  align-items: center;
+  background-size: cover;
+  display: flex;
 }
+
 .scheduleContainer {
+  width: 50%;
+  height: 70%;
+  transform: translateX(50%);
+  background-color: #95b3b9;
   text-align: center;
+  justify-content: center;
+  border-radius: 5px;
+  outline: none;
+  padding: 0 10px;
 }
 
 .scheduleContent {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+.scheduleElement:nth-child(2n) {
+  justify-content: end;
+}
+.scheduleElement {
+  display: flex;
+  flex-wrap: wrap;
   width: 50%;
-  text-align: center;
-  margin: auto;
+  padding-bottom: 15px;
+}
+
+.scheduleElement label {
+  text-align: left;
+  width: 95%;
+  margin: 5px 0;
+  font-size: 18px;
+}
+
+.scheduleElement input,
+select {
+  width: 95%;
+  height: 50%;
+  border-radius: 5px;
+  border: none;
+}
+
+.scheduleDescription {
+  width: 100%;
+}
+
+.scheduleDescription input {
+  width: 100%;
+  border-radius: 5px;
+  border: none;
+}
+
+.scheduleButtonContainer {
+  display: block;
+  width: 100%;
+}
+
+.scheduleButtonContainer button {
+  font-size: 16px;
+  border-radius: 4px;
+  padding: 5px;
+  margin: 10px;
 }
 
 /* Services Page CSS */
-* {
-  box-sizing: border-box;
+.servicesBody {
+  height: 100vh;
+  background-color: #0f4456;
+  display: flex;
+  margin: 0;
+  background-size: cover;
 }
 .servicesContainer {
   text-align: center;
-  background-color: blue;
 }
 .servicesColumn {
   float: left;
@@ -212,10 +330,6 @@ input[type="phone"]:focus {
   width: 40%;
   height: 50;
 }
-.line {
-  display: table-cell;
-  width: 100%;
-}
 
 .signupButtons {
   margin: 0;
@@ -224,6 +338,72 @@ input[type="phone"]:focus {
 }
 
 .signupButtons > button {
+  background-color: rgb(34, 37, 37);
+  color: white;
+  font-size: 16px;
+  border-radius: 4px;
+  padding: 5px;
+  margin: 10px;
+}
+
+/*Login Page*/
+
+.loginBody {
+  background-color: #0f4456;
+  height: 100vh;
+  margin: 0;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+}
+
+.loginContainer {
+  background-color: rgb(184, 168, 168);
+  width: 40%;
+  height: 60%;
+  transform: translateX(75%);
+  align-items: center;
+  border-radius: 10px;
+}
+
+.loginContainer h1 {
+  width: 100%;
+  text-align: center;
+}
+
+.loginElement {
+  margin-top: 20px;
+  height: 8%;
+}
+
+.loginElement input {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  border-radius: 5px;
+  border: none;
+  margin: auto;
+}
+
+.loginButtonContainer {
+  justify-content: center;
+  display: flex;
+}
+
+.loginButtonContainer button {
+  background-color: rgb(34, 37, 37);
+  color: white;
+  font-size: 16px;
+  border-radius: 4px;
+  padding: 5px;
+  margin: 10px;
+}
+.loginAccountButtonContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.loginAccountButtonContainer button {
   background-color: rgb(34, 37, 37);
   color: white;
   font-size: 16px;

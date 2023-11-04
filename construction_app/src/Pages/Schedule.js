@@ -5,16 +5,33 @@ function Schedule() {
         <div className="scheduleContainer">
           <h1> Schedule</h1>
           <div className="scheduleContent">
-            <label for="type">Choose your Project Type </label>
-            <select className="type">
-              <option value="deck"> Deck</option>
-              <option value="barn"> Barn</option>
-              <option value="remodel"> Remodel</option>
-              <option value="roof"> Roof</option>
-            </select>
-            <input type="text" placeholder="Project Description"></input>
+            <div className="scheduleElement">
+              <label for="first">First Name</label>
+              <input className="first" placeholder="First Name "></input>
+            </div>
 
-            <div className="buttonContainer">
+            <div className="scheduleElement">
+              <label for="last">Last Name</label>
+              <input className="last" placeholder="Last Name"></input>
+            </div>
+            <div className="scheduleElement">
+              <label for="email">Email</label>
+              <input className="email" placeholder="Email"></input>
+            </div>
+            <div className="scheduleElement">
+              <label for="type">Choose your Project Type </label>
+              <select className="type">
+                <option value="deck"> Deck</option>
+                <option value="barn"> Barn</option>
+                <option value="remodel"> Remodel</option>
+                <option value="roof"> Roof</option>
+              </select>
+            </div>
+            <div className="scheduleDescription">
+              <input type="text" placeholder="Project Description"></input>
+            </div>
+
+            <div className="scheduleButtonContainer">
               <button>Submit</button>
             </div>
           </div>
@@ -25,4 +42,3 @@ function Schedule() {
 }
 
 export default Schedule;
-
