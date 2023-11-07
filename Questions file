@@ -1,21 +1,3 @@
-1. How can I get the sing up page to wrap specific lines?
-    use nested div tags
-2. How do I get the buttons to put space between them but also be on the same line?
-    nested div tags
-3. Why do pictures and videos lag so much?
-    Who cares
-4. How do I get rid of space between navebar and image on home page?
-    Check how the div tag is nested
-5. How do I get the buttons centered on the login page?
-    nested div tags
-6. Why is my login page blue?
-    Make one css file and have class names named well
-7. How do I use these API's? If I want 2FA where do I put it?   
-8. What are some general stylung techniques I can use to make this look beter?
-9. How do I get spcae out between navbar and top of book page
-    Look at css 
-10. How do I get my content stacked on book page?
-
-    look up color theory for graphics programming 
-    
+1. How to get validation working 
+2. Why isnt my sql server working? 
 

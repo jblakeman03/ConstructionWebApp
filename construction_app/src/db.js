@@ -1,4 +1,4 @@
-const sql = reuire("mssql");
+const sql = require("mssql");
 const config = {
   user: "TestLogin",
   password: "Passw0rd123#",
