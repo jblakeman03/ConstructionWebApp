@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 function SignUp() {
   const [values, setValues] = useState({
@@ -7,8 +8,7 @@ function SignUp() {
     email: "",
     pass: "",
     verifyPass: "",
-    street1: "",
-    street2: "",
+    street: "",
     city: "",
     state: "",
     zip: "",
@@ -19,7 +19,7 @@ function SignUp() {
     email: "",
     pass: "",
     verifyPass: "",
-    street1: "",
+    street: "",
     city: "",
     state: "",
     zip: "",
@@ -46,18 +46,65 @@ function SignUp() {
     if (values.verifyPass === "")
       error.verifyPass = "Verify Password cannot be empty";
     else error.verifyPass = "";
-    if (values.street1 === "") error.street1 = "Street1 cannot be empty";
-    else error.street1 = "";
+    if (values.street === "") error.street1 = "Street1 cannot be empty";
+    else error.street = "";
     if (values.city === "") error.city = "City cannot be empty";
     else error.city = "";
     if (values.state === "") error.state = "State cannot be emtpty";
     else error.state = "";
-    if (values.zip === "") error.zip = "Zipcode cannot be empty";
+    if (values.zip === 0) error.zip = "Zipcode cannot be empty";
     else error.zip = "";
     if (values.pass !== values.verifyPass)
       error.verifyPass = "Passwords do not match";
+    else if (values.pass === values.verifyPass && values.pass !== "")
+      error.verifyPass = "";
 
     setErrors(error);
+    var hasErrors = false;
+    for (var key in error) {
+      if (errors[key] != "") {
+        hasErrors = true;
+        console.log(errors[key]);
+      }
+    }
+    console.log("1. ", hasErrors);
+    const customer = values;
+
+    if (hasErrors === false) {
+      console.log("No Errors. In if");
+
+      const createCustomer = async () => {
+        const newCust = await fetch("/createCustomer", {
+          method: "post",
+          headers: {
+            "content-type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            ...values,
+          }),
+        }).then((res) => res.json());
+        console.log(newCust);
+      };
+      console.log(values);
+      createCustomer();
+    }
+
+    const testing = async () => {
+      const newCust = await fetch("/add", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: "cole",
+        }),
+      }).then((res) => res.json());
+      console.log(newCust);
+    };
+    const data = { name: "cole" };
+    // testing();
   };
 
   const handleClear = (event) => {
@@ -68,7 +115,7 @@ function SignUp() {
       email: "",
       pass: "",
       verifyPass: "",
-      street1: "",
+      street: "",
       city: "",
       state: "",
       zip: "",
@@ -79,14 +126,25 @@ function SignUp() {
       email: "",
       pass: "",
       verifyPass: "",
-      street1: "",
-      street2: "",
+      street: "",
       city: "",
       state: "",
       zip: "",
     });
   };
 
+  // const getDate = async (url) => {
+  //   const data = await fetch(url, {
+  //     method: "POST",
+  //     headers: {
+  //       "content-type": "application/json",
+  //       Accept: "application/json",
+  //     },
+  //   }).then((res) => res.json());
+  //   console.log(data);
+  // };
+
+  // getDate("/api");
   return (
     <>
       <body>
@@ -100,7 +158,8 @@ function SignUp() {
               value={values.first}
               onChange={handleChange}
             ></input>
-            first <label for="last">Last Name</label>
+            {errors.first && <span>{errors.first}</span>}
+            <label for="last">Last Name</label>
             <input
               type="text"
               placeholder="Last Name"
@@ -136,23 +195,15 @@ function SignUp() {
               onChange={handleChange}
             ></input>
             {errors.verifyPass && <span>{errors.verifyPass}</span>}
-            <label for="street1">Street 1</label>
+            <label for="street">Street</label>
             <input
               type="text"
-              placeholder="Street Address 1"
-              className="street1"
-              value={values.street1}
+              placeholder="Street Address"
+              className="street"
+              value={values.street}
               onChange={handleChange}
             ></input>
             {errors.street1 && <span>{errors.street1}</span>}
-            <label for="street2">Street 2</label>
-            <input
-              type="text"
-              placeholder="Street 2"
-              className="street2"
-              value={values.street2}
-              onChange={handleChange}
-            ></input>
             <label for="city">City</label>
             <input
               type="text"

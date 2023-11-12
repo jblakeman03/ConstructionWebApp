@@ -27,6 +27,35 @@ function Login() {
     }
 
     setErrors(tempErrors);
+
+    var hasErrors = false;
+    for (var key in errors) {
+      if (errors[key] != "") {
+        hasErrors = true;
+        console.log(errors[key]);
+      }
+    }
+    console.log("1. ", hasErrors);
+    const customer = values;
+
+    if (hasErrors === false) {
+      console.log("No Errors. In if");
+
+      const getLogin = async () => {
+        const login = await fetch("/getLogin", {
+          method: "post",
+          headers: {
+            "content-type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            email: values.email,
+          }),
+        }).then((res) => res.json());
+        console.log(login);
+      };
+      getLogin();
+    }
   };
 
   const handleReset = () => {
@@ -43,6 +72,7 @@ function Login() {
 
             <div className="loginElement">
               <input
+                type="email"
                 placeholder="Email"
                 className="email"
                 onChange={onChange}
@@ -78,4 +108,5 @@ function Login() {
     </>
   );
 }
+
 export default Login;
