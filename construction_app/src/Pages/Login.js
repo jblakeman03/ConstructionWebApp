@@ -52,7 +52,6 @@ function Login() {
             email: values.email,
           }),
         }).then((res) => res.json());
-        console.log(login);
       };
       getLogin();
     }

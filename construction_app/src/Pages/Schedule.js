@@ -7,7 +7,7 @@ function Schedule() {
     email: "",
     scheduleDate: "",
     projectType: "",
-    vdescription: "",
+    description: "",
   });
   const [errors, setErrors] = useState({
     first: "",
@@ -54,19 +54,19 @@ function Schedule() {
     if (hasErrors === false) {
       console.log("No Errors. In if");
 
-      const getLogin = async () => {
-        const login = await fetch("/getLogin", {
+      const scheduleQuote = async () => {
+        await fetch("/scheduleQuote", {
           method: "post",
           headers: {
             "content-type": "application/json",
             Accept: "application/json",
           },
           body: JSON.stringify({
-            email: values.email,
+            ...values,
           }),
         }).then((res) => res.json());
       };
-      getLogin();
+      scheduleQuote();
     }
   };
 
@@ -132,7 +132,11 @@ function Schedule() {
                 {errors.scheduleDate && <span>{errors.scheduleDate}</span>}
               </div>
               <div className="scheduleDescription">
-                <input type="text" placeholder="Project Description"></input>
+                <input
+                  type="text"
+                  placeholder="Project Description"
+                  value={values.description}
+                ></input>
               </div>
 
               <div className="scheduleButtonContainer">

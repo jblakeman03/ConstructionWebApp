@@ -42,6 +42,22 @@ const getLogin = async (email) => {
   }
 };
 
+const createEstimate = async (estimate) => {
+    try {
+      let pool = await sql.connect(config);
+       await pool.request().query(
+        `insert into quotes (CustomerID, QuoteDate, Street1, City, State, Zip)
+        values ('${estimate.CustomerID}', '${estimate.ScheduleDate}', '${customer.email}', '${
+          customer.pass
+        }', '${customer.street}', '${customer.city}', '${
+          customer.state
+        }', ${parseInt(customer.zip)})`
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
 const createTest = async (data) => {
   try {
     let pool = await sql.connect(config);

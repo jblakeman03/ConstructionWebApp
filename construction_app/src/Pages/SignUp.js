@@ -91,7 +91,7 @@ function SignUp() {
     }
 
     const testing = async () => {
-      const newCust = await fetch("/add", {
+      const newCust = await fetch("/test", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -104,7 +104,7 @@ function SignUp() {
       console.log(newCust);
     };
     const data = { name: "cole" };
-    // testing();
+    testing();
   };
 
   const handleClear = (event) => {
