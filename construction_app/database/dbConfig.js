@@ -1,7 +1,7 @@
 const config = {
   user: "WebApp",
-  password: "Password123#",
-  server: "DESKTOP-S0M481H",
+  password: "Password123",
+  server: "COLES_SURFACE",
   database: "BlakemanBrothers",
   options: {
     trustServerCertificate: true,

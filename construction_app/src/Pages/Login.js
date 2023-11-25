@@ -35,23 +35,51 @@ function Login() {
         console.log(errors[key]);
       }
     }
-    console.log("1. ", hasErrors);
-    const customer = values;
+
 
     if (hasErrors === false) {
-      console.log("No Errors. In if");
 
-      const getLogin = async () => {
-        const login = await fetch("/getLogin", {
+      var emailExists = true
+
+      const checkEmail = async () => {
+        const email = await fetch("/checkEmailExistance", {
           method: "post",
           headers: {
             "content-type": "application/json",
             Accept: "application/json",
           },
           body: JSON.stringify({
-            email: values.email,
+            ...values
           }),
         }).then((res) => res.json());
+        if(Object.keys(email).length===0)
+        {
+          emailExists = false 
+          alert('This Email does not exist in our system. Please sign up')
+        }
+      };
+
+
+      const getLogin = async () => {
+        await checkEmail()
+        if(emailExists){
+          console.log('in the get login stage')
+          const login = await fetch("/getLogin", {
+            method: "post",
+            headers: {
+              "content-type": "application/json",
+              Accept: "application/json",
+            },
+            body: JSON.stringify({
+              email: values.email,
+            }),
+          }).then((res) => res.json());
+          console.log(login)
+          if(values.pass===login[0].password)
+          {
+            console.log('Success!')
+          }
+      }
       };
       getLogin();
     }

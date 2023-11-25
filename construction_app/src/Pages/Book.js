@@ -16,7 +16,11 @@ function Book() {
     let tempErrors = {};
     if (values.quoteID === "") {
       tempErrors.quoteID = "Quote ID cannot be empty";
-    } else {
+    }
+    else if(!Number.isInteger(parseInt(values.quoteID))){
+      tempErrors.quoteID = "Quote must be a number"
+    }
+    else {
       tempErrors.quoteID = "";
     }
     if (values.bookDate === "") {
@@ -26,6 +30,79 @@ function Book() {
     }
 
     setErrors(tempErrors);
+
+
+    var hasErrors = false;
+
+    for (var key in errors) {
+      if (errors[key] != "") {
+        hasErrors = true;
+        console.log(errors[key]);
+      }
+    }
+
+    if (hasErrors === false) {
+      var validID = true
+      var projectExists = false
+
+      const checkQuote = async () => {
+        const quote = await fetch("/checkQuote", {
+          method: "post",
+          headers: {
+            "content-type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            ...values,
+          }),
+        }).then((res) => res.json());
+        if(Object.keys(quote).length===0)
+        {
+          validID = false
+          alert('This QuoteID does not exist')
+        }
+      };
+
+      const checkProject = async () => {
+        const project = await fetch("/checkProject", {
+          method: "post",
+          headers: {
+            "content-type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            ...values,
+          }),
+        }).then((res) => res.json());
+        console.log(project)
+        if(Object.keys(project).length>0)
+        {
+          projectExists = true
+          alert('This Project has already been scheduled')
+        }
+      };
+
+
+      const createProject = async () => {
+        await checkQuote()
+        if(validID ){
+          await checkProject()
+          if(!projectExists){
+            await fetch("/createProject", {
+              method: "post",
+              headers: {
+                "content-type": "application/json",
+                Accept: "application/json",
+              },
+              body: JSON.stringify({
+                ...values,
+              }),
+            }).then((res) => res.json());
+          }
+        }
+      };
+      createProject();
+    }
   };
   return (
     <>
@@ -49,7 +126,7 @@ function Book() {
                 <input
                   type="date"
                   className="bookDate"
-                  value={values.quoteID}
+                  value={values.bookDate}
                   onChange={onChange}
                 ></input>
                 {errors.bookDate && <span>{errors.bookDate}</span>}

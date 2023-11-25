@@ -48,11 +48,12 @@ function Schedule() {
         console.log(errors[key]);
       }
     }
-    console.log("1. ", hasErrors);
+    console.log("1 ", hasErrors);
     const customer = values;
 
     if (hasErrors === false) {
       console.log("No Errors. In if");
+      console.log(values.scheduleDate)
 
       const scheduleQuote = async () => {
         await fetch("/scheduleQuote", {
@@ -136,6 +137,7 @@ function Schedule() {
                   type="text"
                   placeholder="Project Description"
                   value={values.description}
+                  onChange={handleChange}
                 ></input>
               </div>
 

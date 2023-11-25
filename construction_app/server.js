@@ -32,11 +32,47 @@ app.post("/createCustomer", async (req, res) => {
   await dbOperation.createCustomer(req.body);
 });
 
+
+app.post("/scheduleQuote", async (req, res) => {
+  console.log("called to create Quote");
+
+  await dbOperation.scheduleQuote(req.body);
+});
+
+
+app.post("/createProject", async (req, res) => {
+  console.log("called to create project");
+
+  await dbOperation.createProject(req.body);
+});
+
+app.post("/checkProject", async (req, res) => {
+  console.log("called to check project");
+
+  let data = await dbOperation.checkProject(req.body);
+  res.json(data)
+});
+
+app.post("/checkEmailExistance", async (req, res) => {
+  console.log("called to check email");
+
+  const result = await dbOperation.checkEmailExistance(req.body);
+  res.json(result.recordset)
+  
+});
+
 app.post("/getLogin", async (req, res) => {
   console.log("called test");
   const result = await dbOperation.getLogin(req.body);
   res.json(result.recordset);
 });
+
+app.post('/checkQuote', async(req, res) => {
+  console.log('called check quote')
+  const result = await dbOperation.checkQuote(req.body)
+  res.json(result.recordset)
+})
+
 
 app.post("/test", async (req, res) => {
   console.log("called test");

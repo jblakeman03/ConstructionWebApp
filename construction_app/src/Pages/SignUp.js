@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 
 function SignUp() {
   const [values, setValues] = useState({
@@ -59,23 +58,20 @@ function SignUp() {
     else if (values.pass === values.verifyPass && values.pass !== "")
       error.verifyPass = "";
 
+ 
+
     setErrors(error);
     var hasErrors = false;
     for (var key in error) {
       if (errors[key] != "") {
         hasErrors = true;
-        console.log(errors[key]);
       }
     }
-    console.log("1. ", hasErrors);
-    const customer = values;
-
+    var inUse = false
     if (hasErrors === false) {
-      console.log("No Errors. In if");
-
-      const createCustomer = async () => {
-        const newCust = await fetch("/createCustomer", {
-          method: "post",
+      const checkEmailExistance = async() => {
+        const cust = await fetch('/checkEmailExistance', {
+          method: 'post', 
           headers: {
             "content-type": "application/json",
             Accept: "application/json",
@@ -83,28 +79,38 @@ function SignUp() {
           body: JSON.stringify({
             ...values,
           }),
-        }).then((res) => res.json());
-        console.log(newCust);
-      };
-      console.log(values);
-      createCustomer();
+      }).then((res)=>res.json());
+      console.log(cust)
+      console.log(Object.keys(cust).length)
+      if(Object.keys(cust).length>0)
+      {
+        inUse = true
+        alert('This Email is already in use. Please Login')
+      }
     }
 
-    const testing = async () => {
-      const newCust = await fetch("/test", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          name: "cole",
-        }),
-      }).then((res) => res.json());
-      console.log(newCust);
-    };
-    const data = { name: "cole" };
-    testing();
+      const createCustomer = async () => {
+        await checkEmailExistance()
+        console.log(inUse)
+        if(inUse===false){
+          console.log('in the danger zone')
+          const newCust = await fetch("/createCustomer", {
+            method: "post",
+            headers: {
+              "content-type": "application/json",
+              Accept: "application/json",
+            },
+            body: JSON.stringify({
+              ...values,
+            }),
+          }).then((res) => res.json());
+      }
+      };
+      createCustomer()
+    
+    }
+
+
   };
 
   const handleClear = (event) => {
