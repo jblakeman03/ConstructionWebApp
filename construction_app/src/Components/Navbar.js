@@ -1,27 +1,30 @@
-import "./Navbar.css";
+import { Link } from "react-router-dom";
+import React, {useState} from 'react';
 
-function Navbar() {
+function Navbar(status) {
+
+  const loggedIn = status.parentToChild
+  console.log('in nav:', loggedIn)
+
   return (
     <nav className="nav">
-      <a href="/" className="site-title">
+      <Link to="/" className="site-title">
         Blakeman Brothers Construction
-      </a>
+      </Link>
       <ul>
         <li>
-          <a href="/Home">Home</a>
+          <Link to="/Home">Home</Link>
         </li>
         <li>
-          <a href="/About">About Us</a>
+          <Link to="/Services">Services</Link>
         </li>
         <li>
-          <a href="/Services">Services</a>
+          <Link to="/Contact">Contact Us</Link>
         </li>
-        <li>
-          <a href="/Contact">Contact Us</a>
-        </li>
-        <li>
-          <a href="/Login">Log In </a>
-        </li>
+       {!loggedIn? <li>
+          <Link to="/Login">Log In </Link>
+        </li>: null} 
+        {loggedIn? <li> <Link to="/Account">Account </Link> </li> : null}
       </ul>
     </nav>
   );

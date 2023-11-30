@@ -1,0 +1,497 @@
+/* Components CSS */
+
+/* Buttons CSS */
+:root {
+  --primary: white;
+  --secondary: black;
+}
+
+.btn {
+  padding: 8px 20px;
+}
+
+.btn--primary {
+  background-color: var(--primary);
+  color: black;
+}
+
+.btn--outline {
+  background-color: var(--seconday);
+}
+
+.btn--medium {
+  padding: 8px 20px;
+  font-size: 20px;
+}
+
+.btn--large {
+  padding: 12px 26px;
+  font-size: 20px;
+}
+
+.btn--medium:hover,
+.btn--large:hover {
+  background-color: red;
+}
+
+/* Home Section CSS */
+.homeBody {
+  background-image: url(../public/Images/backgroundHouse.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100%;
+}
+
+.HomeSection-container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  object-fit: contain;
+}
+
+.homeButtons {
+  background-color: #393e41;
+  color: white;
+  font-size: 22px;
+  border-radius: 6px;
+  padding: 5px;
+  margin: 10px;
+}
+
+.HomeSection-container > h1 {
+  color: white;
+  margin-top: 200px;
+  font-size: 50px;
+}
+
+.HomeSection-container > p {
+  color: white;
+  margin-top: -25px;
+  font-size: 30px;
+}
+
+/* Navbar CSS */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}
+
+.site-title {
+  font-size: 2rem;
+}
+
+.nav {
+  background-color: rgb(34, 37, 37);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 2rem;
+  padding: 0 1rem;
+}
+
+.nav ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.nav a {
+  color: inherit;
+  text-decoration: none;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.nav li:hover {
+  background-color: #777;
+}
+
+/* Pages CSS */
+
+/*Account Page CSS */
+.accountContainer {
+  display: flex;
+  background-color: #0f4456;
+  background-size: cover;
+  height: 100vh;
+  flex-direction: column;
+  gap: 10px;
+  padding: 1rem;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  border: 1px solid #ffffff;
+  text-align: left;
+  padding: 4px;
+  font-size: 20px;
+}
+
+th {
+  background-color: #716D6E;
+}
+
+td {
+  background-color: #B3BCB8;
+}
+
+.deleteButtonContainer {
+  color: white;
+  font-size: 16px;
+  border-radius: 4px;
+  padding: 5px;
+  margin: 10px;
+}
+
+.editAccountContainer { 
+    padding: 5px; 
+    margin: 5px;
+    display: flex;
+    justify-content: right;
+}
+
+.logoutButton, .changePasswordButton {
+  width: 100%;
+  font-size: 18px;
+  padding: 2px; 
+  margin: 1px;
+  border-radius: 4px;
+}
+
+
+
+
+/* Book Page CSS */
+.bookBody {
+  height: 100vh;
+  background-color: #0f4456;
+  display: flex;
+  margin: 0;
+  background-size: cover;
+}
+
+.bookContainer {
+  text-align: center;
+  background-color: #95b3b9;
+  height: 40%;
+  width: 40%;
+  transform: translateX(75%);
+  margin-top: 150px;
+  border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 10px;
+}
+
+.bookContent {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+.bookElement:nth-child(2n) {
+  justify-content: end;
+}
+
+.bookElement {
+  display: flex;
+  flex-wrap: wrap;
+  width: 50%;
+  transform: translateY(-70%);
+}
+
+.bookElement label {
+  width: 95%;
+  text-align: left;
+  margin: 5px 0;
+  font-size: 18px;
+}
+
+.bookElement input {
+  width: 95%;
+  height: 50%;
+  border-radius: 5px;
+  border: none;
+}
+
+.bookButtonContainer {
+  width: 100%;
+  transform: translateY(-50%);
+}
+
+.bookButtonContainer button {
+  font-size: 18px;
+  border-radius: 4px;
+  padding: 3px;
+}
+
+/* Contact Page CSS */
+.contactBody {
+  height: 100vh;
+  background-color: #0f4456;
+  display: flex;
+  margin: 0;
+  background-size: cover;
+}
+.contactContainer {
+  text-align: center;
+  width: 100%;
+  
+}
+.contactColumn {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+  text-align: center;
+  height: 100%;
+  font-size: 20px;
+}
+
+.contactRow:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Schedule Page CSS */
+.scheduleBody {
+  background-color: #0f4456;
+  margin: 0;
+  height: 100vh;
+  padding: 0;
+  align-items: center;
+  background-size: cover;
+  display: flex;
+}
+
+.scheduleContainer {
+  width: 50%;
+  height: 70%;
+  transform: translateX(50%);
+  background-color: #95b3b9;
+  text-align: center;
+  justify-content: center;
+  border-radius: 5px;
+  outline: none;
+  padding: 0 10px;
+}
+
+.scheduleContent {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+.scheduleElement:nth-child(2n) {
+  justify-content: end;
+}
+.scheduleElement {
+  display: flex;
+  flex-wrap: wrap;
+  width: 50%;
+  padding-bottom: 15px;
+}
+
+.scheduleElement label {
+  text-align: left;
+  width: 95%;
+  margin: 5px 0;
+  font-size: 18px;
+}
+
+.scheduleElement input,
+select {
+  width: 95%;
+  height: 50%;
+  border-radius: 5px;
+  border: none;
+}
+
+.scheduleDescription {
+  width: 100%;
+}
+
+.scheduleDescription input {
+  width: 100%;
+  border-radius: 5px;
+  border: none;
+}
+
+.scheduleButtonContainer {
+  display: block;
+  width: 100%;
+}
+
+.scheduleButtonContainer button {
+  font-size: 16px;
+  border-radius: 4px;
+  padding: 5px;
+  margin: 10px;
+}
+
+/* Services Page CSS */
+.servicesBody {
+  height: 100vh;
+  background-color: #0f4456;
+  display: flex;
+  margin: 0;
+  background-size: cover;
+}
+.servicesContainer {
+  text-align: center;
+}
+.servicesColumn {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+  text-align: center;
+  height: 100%;
+  font-size: 20px;
+}
+
+.servicesRow:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Sign Up CSS */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="phone"] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+.body {
+  background-color: green;
+}
+
+.form {
+  background-color: #0f4456;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="phone"]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+.signup_container {
+  background-color: #95b3b9;
+  margin: auto;
+  display: table;
+  padding: 15px;
+  position: relative;
+  top: 25%;
+  width: 40%;
+  height: 50;
+}
+
+.signupButtons {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.signupButtons > button {
+  background-color: rgb(34, 37, 37);
+  color: white;
+  font-size: 16px;
+  border-radius: 4px;
+  padding: 5px;
+  margin: 10px;
+}
+
+/*Login Page*/
+
+.loginBody {
+  background-color: #0f4456;
+  height: 100vh;
+  margin: 0;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+}
+
+.loginContainer {
+  background-color: rgb(184, 168, 168);
+  width: 40%;
+  height: 60%;
+  transform: translateX(75%);
+  align-items: center;
+  border-radius: 10px;
+}
+
+.loginContainer h1 {
+  width: 100%;
+  text-align: center;
+}
+
+.loginElement {
+  margin-top: 20px;
+  height: 8%;
+}
+
+.loginElement input {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  border-radius: 5px;
+  border: none;
+  margin: auto;
+}
+
+.loginButtonContainer {
+  justify-content: center;
+  display: flex;
+}
+
+.loginButtonContainer button {
+  background-color: rgb(34, 37, 37);
+  color: white;
+  font-size: 16px;
+  border-radius: 4px;
+  padding: 5px;
+  margin: 10px;
+}
+.loginAccountButtonContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.loginAccountButtonContainer button {
+  background-color: rgb(34, 37, 37);
+  color: white;
+  font-size: 16px;
+  border-radius: 4px;
+  padding: 5px;
+  margin: 10px;
+}

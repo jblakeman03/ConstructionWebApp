@@ -1,8 +1,12 @@
-import "./Home.css";
-import Background from "../Components/Background";
+import HomeSection from "../Components/HomeSection";
+function Home(loginStatus) {
 
-function Home() {
-  return <h1>Home</h1>;
+  console.log('in home', loginStatus)
+  return (
+    <>
+      <HomeSection parentToChild={loginStatus.parentToChild}></HomeSection>
+    </>
+  );
 }
 
 export default Home;
