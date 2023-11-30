@@ -142,7 +142,7 @@ function Login() {
               </div>
               <div className="loginAccountButtonContainer">
                 <Link to="/SignUp">
-                  <button>Dont have an account? Sign up!</button>
+                  <button>Don't have an account? Sign up!</button>
                 </Link>
               </div>
             </form>

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 function HomeSection(status) {
   const isLoggedIn = status.parentToChild
-  console.log('in home section', isLoggedIn)
   return (
     <>
       <div className="homeBody">

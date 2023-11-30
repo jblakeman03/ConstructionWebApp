@@ -115,7 +115,7 @@ const scheduleQuote = async (quote) => {
     try {
       let pool = await sql.connect(config);
       console.log('in projects', email.email)
-      let projects = await pool.request().query(`select projectID, projects.StartDate, street1, city, State, Zipcode
+      let projects = await pool.request().query(`select projectID, projects.StartDate, street1, city, State, Zipcode, 
         from projects 
         left join customers 
         on projects.customerID = customers.customerID

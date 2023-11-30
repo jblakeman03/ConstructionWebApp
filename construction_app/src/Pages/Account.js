@@ -48,7 +48,6 @@ function Account(parentData) {
                 await getProjects()
                 await getQuotes()
             }
-            console.log('q:', quotes)
 
             pageSetup()
         }, []);
@@ -70,7 +69,6 @@ function Account(parentData) {
                 }).then((res) => res.json());
             
             };
-            console.log('deleteing project')
             
              deleteProject()
 
