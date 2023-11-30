@@ -1,15 +1,20 @@
 import React, { useState } from "react";
+import {useNavigate} from 'react-router-dom'
 
+//The book component is where the book page is created and front end work is handled for booking a project
 function Book() {
   const [values, setValues] = useState({ quoteID: "", bookDate: "" });
   const [errors, setErrors] = useState({ quoteID: "", bookDate: "" });
-
+  const today = new Date()
+  var selectedDate = new Date(values.bookDate)
+  const navigate = useNavigate()
   const onChange = (event) => {
     setValues((prev) => ({
       ...prev,
       [event.target.className]: event.target.value,
     }));
   };
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -25,7 +30,13 @@ function Book() {
     }
     if (values.bookDate === "") {
       tempErrors.bookDate = "Start date cannot be empty";
-    } else {
+    } 
+    else if(selectedDate < today)
+    {
+      tempErrors.bookDate = "Date cannot be in the past"
+      alert("Date cannot be in the past")
+    }
+    else {
       tempErrors.bookDate = "";
     }
 
@@ -33,14 +44,11 @@ function Book() {
 
 
     var hasErrors = false;
-
-    for (var key in errors) {
-      if (errors[key] != "") {
+    for (var key in tempErrors) {
+      if (tempErrors[key] !== "") {
         hasErrors = true;
-        console.log(errors[key]);
       }
     }
-
     if (hasErrors === false) {
       var validID = true
       var projectExists = false
@@ -56,7 +64,7 @@ function Book() {
             ...values,
           }),
         }).then((res) => res.json());
-        if(Object.keys(quote).length===0)
+        if(Object.keys(quote.recordset).length===0)
         {
           validID = false
           alert('This QuoteID does not exist')
@@ -74,8 +82,7 @@ function Book() {
             ...values,
           }),
         }).then((res) => res.json());
-        console.log(project)
-        if(Object.keys(project).length>0)
+        if(Object.keys(project.recordset).length>0)
         {
           projectExists = true
           alert('This Project has already been scheduled')
@@ -88,6 +95,7 @@ function Book() {
         if(validID ){
           await checkProject()
           if(!projectExists){
+            console.log('here')
             await fetch("/createProject", {
               method: "post",
               headers: {
@@ -102,6 +110,7 @@ function Book() {
         }
       };
       createProject();
+      navigate('/Account')
     }
   };
   return (

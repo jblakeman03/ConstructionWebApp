@@ -1,12 +1,14 @@
-1. Get data to and from for book and scheulde   (45 mins)
-2. Validate login (15 min)
-3. Build account page (1 hr)
-3a. Build api for account page (15 min)
-4. Make account page show when logged in (1 hr)
-5. create manage projects page (1 hr)
-6. get api for emial/rtext working (3 hrs)
-7. On successful sign up go to login (1 hr)
 8. Create documentation (2 hrs)
 9. Fix styling for fonts/colors (1 hr)
 10. Test on bigger screens ( 1 hr)
-11. Validate that states are 2 chracters (30 min)
+12. Update account info 
+13. STyle error text
+14. clean up code 
+15. add comments 
+16. Update contact info 
+19. Fix project description 
+20. Make only future dates be shceduled 
+21. Make old appoitnments not show up in account
+22. Make project Type show up
+23. fix CSS
+24. fix json error on book page

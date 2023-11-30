@@ -1,9 +1,10 @@
 import HomeSection from "../Components/HomeSection";
-function Home() {
+function Home(loginStatus) {
 
+  console.log('in home', loginStatus)
   return (
     <>
-      <HomeSection></HomeSection>
+      <HomeSection parentToChild={loginStatus.parentToChild}></HomeSection>
     </>
   );
 }

@@ -111,6 +111,67 @@ const scheduleQuote = async (quote) => {
     }
   };
 
+  const getProjects = async (email) => {
+    try {
+      let pool = await sql.connect(config);
+      console.log('in projects', email.email)
+      let projects = await pool.request().query(`select projectID, projects.StartDate, street1, city, State, Zipcode
+        from projects 
+        left join customers 
+        on projects.customerID = customers.customerID
+        where customers.email = '${email.email}'`);
+        return projects
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getQuotes = async (email) => {
+    try {
+      console.log('in quotes', email.email)
+      let pool = await sql.connect(config);
+      let quotes = await pool.request().query(`select quoteID, quotes.QuoteDate, quotes.street1, quotes.city, quotes.State, customers.Zipcode
+        from quotes 
+        left join customers 
+        on quotes.CustomerID = customers.customerID
+        where customers.email = '${email.email}'`);
+      return quotes
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const deleteProject = async (projectID) => {
+    try {
+      let pool = await sql.connect(config);
+      await pool.request().query(`delete from projects where projectID=${parseInt(projectID.id)}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const deleteQuote = async (quoteID) => {
+    try {
+      let pool = await sql.connect(config);
+      let projects = await pool.request().query(`delete from quotes where quoteID = ${parseInt(quoteID.id)}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const checkQuoteForProject = async (quoteID) => {
+    try {
+      let pool = await sql.connect(config);
+      console.log(quoteID.id)
+      let projects = await pool.request().query(`select projectID from projects where quoteID = ${parseInt(quoteID.id)}`);
+      console.log(projects)
+      return projects
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
+
 const createTest = async (data) => {
   try {
     let pool = await sql.connect(config);
@@ -132,5 +193,10 @@ module.exports = {
   checkEmailExistance, 
   checkQuote,
   createProject,
-  checkProject
+  checkProject,
+  getProjects,
+  getQuotes, 
+  deleteProject,
+  deleteQuote,
+  checkQuoteForProject
 };

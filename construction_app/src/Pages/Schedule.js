@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {useNavigate} from 'react-router-dom'
 
 function Schedule() {
   const [values, setValues] = useState({
@@ -17,11 +18,19 @@ function Schedule() {
     projectType: "",
   });
 
+  const navigate = useNavigate()
+
+  const today = new Date()
+  var selectedDate = new Date(values.scheduleDate)
+
+
+
   const handleChange = (event) => {
     setValues((prev) => ({
       ...prev,
       [event.target.className]: event.target.value,
     }));
+    console.log(event.target)
   };
 
   const handleSubmit = (event) => {
@@ -37,27 +46,29 @@ function Schedule() {
       error.projectType = "Project Type cannot be empty";
     else error.projectType = "";
     if (values.scheduleDate === "") error.scheduleDate = "Date cannot be empty";
+    else if(selectedDate < today)
+    {
+      error.scheduleDate = "Date cannot be in the past"
+      alert("Date cannot be in the past")
+    }
     else error.scheduleDate = "";
+
+    
+
     setErrors(error);
 
     var hasErrors = false;
 
-    for (var key in errors) {
-      if (errors[key] != "") {
+    for (var key in error) {
+      if (error[key] != "") {
         hasErrors = true;
-        console.log(errors[key]);
       }
     }
-    console.log("1 ", hasErrors);
-    const customer = values;
-
+    var emailExists = true
     if (hasErrors === false) {
-      console.log("No Errors. In if");
-      console.log(values.scheduleDate)
-
-      const scheduleQuote = async () => {
-        await fetch("/scheduleQuote", {
-          method: "post",
+      const checkEmailExistance = async() => {
+        const cust = await fetch('/checkEmailExistance', {
+          method: 'post', 
           headers: {
             "content-type": "application/json",
             Accept: "application/json",
@@ -65,9 +76,33 @@ function Schedule() {
           body: JSON.stringify({
             ...values,
           }),
-        }).then((res) => res.json());
+      }).then((res)=>res.json());
+      if(Object.keys(cust).length===0)
+      {
+        emailExists = false
+        alert('This email is not in our system. Please enter the email you signed up with or create a new account. ')
+      }
+    }
+
+
+      const scheduleQuote = async () => {
+        await checkEmailExistance(values.email)
+        if(emailExists){
+          await fetch("/scheduleQuote", {
+            method: "post",
+            headers: {
+              "content-type": "application/json",
+              Accept: "application/json",
+            },
+            body: JSON.stringify({
+              ...values,
+            }),
+          }).then((res) => res.json());
+        }
+
       };
       scheduleQuote();
+      navigate('/Account')
     }
   };
 
@@ -135,6 +170,7 @@ function Schedule() {
               <div className="scheduleDescription">
                 <input
                   type="text"
+                  className = 'description'
                   placeholder="Project Description"
                   value={values.description}
                   onChange={handleChange}

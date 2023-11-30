@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {useNavigate} from 'react-router-dom'
 
 function SignUp() {
   const [values, setValues] = useState({
@@ -23,6 +24,8 @@ function SignUp() {
     state: "",
     zip: "",
   });
+const [isSignedUp, setIsSignedUp] = useState(false)
+const navigate = useNavigate()
 
   const handleChange = (event) => {
     setValues((prev) => ({
@@ -31,7 +34,8 @@ function SignUp() {
     }));
   };
 
-  const handleSubmit = (event) => {
+
+  const handleSubmit = (event) =>   {
     event.preventDefault();
     let error = {};
     if (values.first === "") error.first = "First name cannot be empty";
@@ -45,29 +49,38 @@ function SignUp() {
     if (values.verifyPass === "")
       error.verifyPass = "Verify Password cannot be empty";
     else error.verifyPass = "";
-    if (values.street === "") error.street1 = "Street1 cannot be empty";
+    if (values.street === "") error.street1 = "Street cannot be empty";
     else error.street = "";
     if (values.city === "") error.city = "City cannot be empty";
     else error.city = "";
-    if (values.state === "") error.state = "State cannot be emtpty";
+    if (values.state === "") 
+    {
+      error.state = "State cannot be emtpty";
+    }
+    else if(values.state.length>2)
+    {
+      error.state = 'State must be abbreaviated'
+    }
     else error.state = "";
-    if (values.zip === 0) error.zip = "Zipcode cannot be empty";
+    if (values.zip.length===0) error.zip = "Zipcode cannot be empty";
     else error.zip = "";
     if (values.pass !== values.verifyPass)
       error.verifyPass = "Passwords do not match";
     else if (values.pass === values.verifyPass && values.pass !== "")
       error.verifyPass = "";
 
- 
 
+ 
     setErrors(error);
     var hasErrors = false;
     for (var key in error) {
-      if (errors[key] != "") {
+      if (error[key] !== "") {
         hasErrors = true;
       }
     }
+
     var inUse = false
+    console.log('should be truwe here', hasErrors)
     if (hasErrors === false) {
       const checkEmailExistance = async() => {
         const cust = await fetch('/checkEmailExistance', {
@@ -80,8 +93,6 @@ function SignUp() {
             ...values,
           }),
       }).then((res)=>res.json());
-      console.log(cust)
-      console.log(Object.keys(cust).length)
       if(Object.keys(cust).length>0)
       {
         inUse = true
@@ -91,10 +102,9 @@ function SignUp() {
 
       const createCustomer = async () => {
         await checkEmailExistance()
-        console.log(inUse)
         if(inUse===false){
-          console.log('in the danger zone')
-          const newCust = await fetch("/createCustomer", {
+          await setIsSignedUp(true)
+          await fetch("/createCustomer", {
             method: "post",
             headers: {
               "content-type": "application/json",
@@ -107,6 +117,9 @@ function SignUp() {
       }
       };
       createCustomer()
+      if(!hasErrors && !inUse)
+        navigate('/Login')
+      
     
     }
 
@@ -139,115 +152,105 @@ function SignUp() {
     });
   };
 
-  // const getDate = async (url) => {
-  //   const data = await fetch(url, {
-  //     method: "POST",
-  //     headers: {
-  //       "content-type": "application/json",
-  //       Accept: "application/json",
-  //     },
-  //   }).then((res) => res.json());
-  //   console.log(data);
-  // };
 
-  // getDate("/api");
-  return (
-    <>
-      <body>
-        <form className="form" onSubmit={handleSubmit}>
-          <div className="signup_container">
-            <label for="first">First Name</label>
-            <input
-              type="text"
-              placeholder="First Name"
-              className="first"
-              value={values.first}
-              onChange={handleChange}
-            ></input>
-            {errors.first && <span>{errors.first}</span>}
-            <label for="last">Last Name</label>
-            <input
-              type="text"
-              placeholder="Last Name"
-              className="last"
-              value={values.last}
-              onChange={handleChange}
-            ></input>
-            {errors.last && <span>{errors.last}</span>}
-            <label for="email">Email</label>
-            <input
-              type="email"
-              placeholder="Email"
-              className="email"
-              value={values.email}
-              onChange={handleChange}
-            ></input>
-            {errors.email && <span>{errors.email}</span>}
-            <label for="pass">Password</label>
-            <input
-              type="password"
-              placeholder="Password"
-              className="pass"
-              value={values.pass}
-              onChange={handleChange}
-            ></input>
-            {errors.pass && <span>{errors.pass}</span>}
-            <label for="verifyPass">Verify Password</label>
-            <input
-              type="password"
-              placeholder="Password"
-              className="verifyPass"
-              value={values.verifyPass}
-              onChange={handleChange}
-            ></input>
-            {errors.verifyPass && <span>{errors.verifyPass}</span>}
-            <label for="street">Street</label>
-            <input
-              type="text"
-              placeholder="Street Address"
-              className="street"
-              value={values.street}
-              onChange={handleChange}
-            ></input>
-            {errors.street1 && <span>{errors.street1}</span>}
-            <label for="city">City</label>
-            <input
-              type="text"
-              placeholder="City"
-              className="city"
-              value={values.city}
-              onChange={handleChange}
-            ></input>
-            {errors.city && <span>{errors.city}</span>}
-            <label for="state">State</label>
-            <input
-              type="text"
-              placeholder="state"
-              className="state"
-              values={values.state}
-              onChange={handleChange}
-            ></input>
-            {errors.state && <span>{errors.state}</span>}
-            <label for="zip">Zipcode</label>
-            <input
-              type="text"
-              placeholder="Zipcode"
-              className="zip"
-              onChange={handleChange}
-              value={values.zip}
-            ></input>
-            {errors.zip && <span>{errors.zip}</span>}
-            <div className="signupButtons">
-              <button type="reset" onClick={handleClear}>
-                Clear
-              </button>
-              <button type="submit">Submit </button>
+
+    return (
+      <>
+        <body>
+          <form className="form" onSubmit={handleSubmit}>
+            <div className="signup_container">
+              <label for="first">First Name</label>
+              <input
+                type="text"
+                placeholder="First Name"
+                className="first"
+                value={values.first}
+                onChange={handleChange}
+              ></input>
+              {errors.first && <span>{errors.first}</span>}
+              <label for="last">Last Name</label>
+              <input
+                type="text"
+                placeholder="Last Name"
+                className="last"
+                value={values.last}
+                onChange={handleChange}
+              ></input>
+              {errors.last && <span>{errors.last}</span>}
+              <label for="email">Email</label>
+              <input
+                type="email"
+                placeholder="Email"
+                className="email"
+                value={values.email}
+                onChange={handleChange}
+              ></input>
+              {errors.email && <span>{errors.email}</span>}
+              <label for="pass">Password</label>
+              <input
+                type="password"
+                placeholder="Password"
+                className="pass"
+                value={values.pass}
+                onChange={handleChange}
+              ></input>
+              {errors.pass && <span>{errors.pass}</span>}
+              <label for="verifyPass">Verify Password</label>
+              <input
+                type="password"
+                placeholder="Password"
+                className="verifyPass"
+                value={values.verifyPass}
+                onChange={handleChange}
+              ></input>
+              {errors.verifyPass && <span>{errors.verifyPass}</span>}
+              <label for="street">Street</label>
+              <input
+                type="text"
+                placeholder="Street Address"
+                className="street"
+                value={values.street}
+                onChange={handleChange}
+              ></input>
+              {errors.street1 && <span>{errors.street1}</span>}
+              <label for="city">City</label>
+              <input
+                type="text"
+                placeholder="City"
+                className="city"
+                value={values.city}
+                onChange={handleChange}
+              ></input>
+              {errors.city && <span>{errors.city}</span>}
+              <label for="state">State</label>
+              <input
+                type="text"
+                placeholder="State"
+                className="state"
+                values={values.state}
+                onChange={handleChange}
+              ></input>
+              {errors.state && <span>{errors.state}</span>}
+              <label for="zip">Zipcode</label>
+              <input
+                type="text"
+                placeholder="Zipcode"
+                className="zip"
+                onChange={handleChange}
+                value={values.zip}
+              ></input>
+              {errors.zip && <span>{errors.zip}</span>}
+              <div className="signupButtons">
+                <button type="reset" onClick={handleClear}>
+                  Clear
+                </button>
+                <button type="submit">Submit </button>
+              </div>
             </div>
-          </div>
-        </form>
-      </body>
-    </>
-  );
-}
+          </form>
+        </body>
+      </>
+    );
+  }
 
 export default SignUp;

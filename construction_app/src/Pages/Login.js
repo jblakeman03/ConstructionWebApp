@@ -1,9 +1,15 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
+
+
+//The login component handles the login page and all the front end work for validating login activities
 function Login() {
+  const storedLoginStatus = () => localStorage.getItem('isLoggedIn') || false
   const [values, setValues] = useState({ email: "", pass: "" });
   const [errors, setErrors] = useState({ email: "", pass: "" });
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const navigate = useNavigate()
 
   const onChange = (event) => {
     setValues((prev) => ({
@@ -74,66 +80,81 @@ function Login() {
               email: values.email,
             }),
           }).then((res) => res.json());
-          console.log(login)
           if(values.pass===login[0].password)
           {
-            console.log('Success!')
+            const setLogins = async () => {
+              await localStorage.setItem('email', values.email)
+              await localStorage.setItem('loginStatus', true)
+              navigate('/Home')
+              window.location.reload(false)
+              
+             
+            }
+            setLogins()
+          }
+          else {
+            alert('Password is not correct')
           }
       }
       };
       getLogin();
     }
   };
-
   const handleReset = () => {
     setValues({ email: "", pass: "" });
     setErrors({ email: "", pass: "" });
   };
 
-  return (
-    <>
-      <body className="loginBody">
-        <div className="loginContainer">
-          <form onSubmit={handleSubmit}>
-            <h1> Login </h1>
+  if(!isLoggedIn){
+    return (
+      <>
+        <body className="loginBody">
+          <div className="loginContainer">
+            <form onSubmit={handleSubmit}>
+              <h1> Login </h1>
 
-            <div className="loginElement">
-              <input
-                type="email"
-                placeholder="Email"
-                className="email"
-                onChange={onChange}
-                value={values.email}
-              ></input>
-              {errors.email && <span>{errors.email}</span>}
-            </div>
+              <div className="loginElement">
+                <input
+                  type="email"
+                  placeholder="Email"
+                  className="email"
+                  onChange={onChange}
+                  value={values.email}
+                ></input>
+                {errors.email && <span>{errors.email}</span>}
+              </div>
 
-            <div className="loginElement">
-              <input
-                type="password"
-                placeholder="Password"
-                className="pass"
-                onChange={onChange}
-                value={values.pass}
-              ></input>
-              {errors.pass && <span>{errors.pass}</span>}
-            </div>
-            <div className="loginButtonContainer">
-              <button type="reset" onClick={handleReset}>
-                Clear
-              </button>
-              <button type="submit">Submit </button>
-            </div>
-            <div className="loginAccountButtonContainer">
-              <Link to="/SignUp">
-                <button>Dont have an account? Sign up!</button>
-              </Link>
-            </div>
-          </form>
-        </div>
-      </body>
-    </>
+              <div className="loginElement">
+                <input
+                  type="password"
+                  placeholder="Password"
+                  className="pass"
+                  onChange={onChange}
+                  value={values.pass}
+                ></input>
+                {errors.pass && <span>{errors.pass}</span>}
+              </div>
+              <div className="loginButtonContainer">
+                <button type="reset" onClick={handleReset}>
+                  Clear
+                </button>
+                <button type="submit">Submit </button>
+              </div>
+              <div className="loginAccountButtonContainer">
+                <Link to="/SignUp">
+                  <button>Dont have an account? Sign up!</button>
+                </Link>
+              </div>
+            </form>
+          </div>
+        </body>
+      </>
   );
+}
+else {
+  
+}
+
 }
 
 export default Login;

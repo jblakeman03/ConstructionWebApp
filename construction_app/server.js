@@ -53,6 +53,13 @@ app.post("/checkProject", async (req, res) => {
   res.json(data)
 });
 
+app.post("/checkQuote", async (req, res) => {
+  console.log("called to check project");
+
+  let data = await dbOperation.checkQuote(req.body);
+  res.json(data)
+});
+
 app.post("/checkEmailExistance", async (req, res) => {
   console.log("called to check email");
 
@@ -62,16 +69,42 @@ app.post("/checkEmailExistance", async (req, res) => {
 });
 
 app.post("/getLogin", async (req, res) => {
-  console.log("called test");
+  console.log("called get login");
   const result = await dbOperation.getLogin(req.body);
   res.json(result.recordset);
 });
 
-app.post('/checkQuote', async(req, res) => {
-  console.log('called check quote')
-  const result = await dbOperation.checkQuote(req.body)
+app.post('/getQuotes', async(req, res) => {
+  console.log('called get quote')
+  const result = await dbOperation.getQuotes(req.body)
   res.json(result.recordset)
 })
+
+app.post('/getProjects', async(req, res) => {
+  console.log('called get projects')
+  const result = await dbOperation.getProjects(req.body)
+  res.json(result.recordset)
+})
+
+app.post('/deleteProject', async(req, res) => {
+  console.log('called delete projects')
+  await dbOperation.deleteProject(req.body)
+  
+})
+
+app.post('/deleteQuote', async(req, res) => {
+  console.log('called delete qupotes')
+await dbOperation.deleteQuote(req.body)
+})
+
+
+app.post('/checkQuoteForProject', async(req, res) => {
+  console.log('called check quootes for projects')
+  const result = await dbOperation.checkQuoteForProject(req.body)
+  res.json(result.recordset)
+})
+
+
 
 
 app.post("/test", async (req, res) => {
